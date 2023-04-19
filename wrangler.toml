@@ -1,0 +1,11 @@
+name = "colour-gallery"
+main = "src/index.ts"
+compatibility_date = "2023-04-19"
+
+[site]
+bucket = "./assets"
+
+[[ d1_databases ]]
+binding = "DB" # i.e. available in your Worker on env.DB
+database_name = "colour-gallery"
+database_id = "a62c2193-8e82-4894-ace4-3f7d1663c22b"

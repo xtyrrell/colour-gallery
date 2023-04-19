@@ -1,0 +1,47 @@
+body {
+  font-family: sans-serif;
+  padding: 10px;
+}
+
+header {
+  font-family: "Editorial New", "Helvetica", sans-serif;
+  font-size: 40px;
+}
+
+.colour-grid {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin: auto;
+
+  align-items: stretch;
+
+  justify-content: stretch;
+  /* justify-items: stretch; */
+
+  /* background: #ddd; */
+}
+
+.colour {
+  width: 100px;
+  height: 100px;
+  /* width: 100px;
+  height: 100px; */
+}
+
+.create-colour {
+  background: #ddd;
+  border: 3px solid black;
+}
+
+.create-colour:active {
+  background: #ccc;
+  border: 3px solid black;
+}
+
+/* Modal */
+
+.modal {
+  background: red;
+  display: none;
+}
