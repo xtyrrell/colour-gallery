@@ -1,6 +1,5 @@
 import { Context } from "hono"
-import { Colour } from "../Colour"
-import { getColours } from "../services/colour-service"
+import { getColours, Colour } from "../services/colour-service"
 
 const Layout = (props: { children?: string, colours: Colour[] }) => {
   return (
