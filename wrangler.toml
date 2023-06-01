@@ -1,5 +1,5 @@
 name = "colour-gallery"
-main = "src/index.ts"
+main = "src/index.tsx"
 compatibility_date = "2023-04-19"
 
 [site]

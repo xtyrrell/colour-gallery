@@ -1,5 +1,11 @@
 import { Hono } from 'hono'
+
+import { jsx } from 'hono/jsx'
+
 import { serveStatic } from 'hono/cloudflare-workers'
+
+import indexPageFn from './pages/index'
+import { getColours, Colour } from './services/colour-service'
 
 type Bindings = {
 	DB: D1Database;
@@ -13,15 +19,18 @@ const app = new Hono<{ Bindings: Bindings }>()
 // TODO:
 // app.basePath('/api')
 
-console.log('Routes:')
-app.showRoutes()
+app.get('/', indexPageFn)
 
 app.get('/colours', async c => {
-    const { results } = await c.env.DB.exec(`
-      select * from colours
-    `)
+    console.log("GET /colours")
 
-    return c.json(results)
+    const a = c.env.DB
+
+    const colours = getColours(c);
+    
+    return c.json(
+colours
+      )
 })
 
 app.post('/colours', async c => {
@@ -62,7 +71,7 @@ app.delete('/colours/:hexCode', async c => {
   }
 })
 
-app.get('/', serveStatic({ path: './index.html' }))
+// app.get('/', serveStatic({ path: './index.html' }))
 app.get('/static/*', serveStatic({ root: './' }))
 app.get('/favicon.ico', serveStatic({ path: './favicon.ico' }))
 
