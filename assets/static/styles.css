@@ -41,7 +41,8 @@ header {
 
 /* Modal */
 
-.modal {
+.add-colour-modal {
+  margin: auto;
   /* background: ; */
   /* display: none; */
 }
