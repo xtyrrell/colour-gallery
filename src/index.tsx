@@ -22,8 +22,6 @@ app.get("/", indexPageFn);
 app.get("/colours", async (c) => {
   console.log("GET /colours");
 
-  const a = c.env.DB;
-
   const colours = getColours(c);
 
   return c.json(colours);

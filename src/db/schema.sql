@@ -6,7 +6,7 @@ CREATE TABLE colours (
 INSERT INTO colours (
   hex_code, name
 ) VALUES
-  ('#123123', 'green'),
-  ('#456456', 'cool red'),
+  ('#123123', 'albertus'),
+  ('#456456', 'chipmunk'),
   ('#818721', 'dorky yellow'),
   ('#80192a', 'stummy brown');

@@ -1,6 +1,7 @@
 body {
   font-family: sans-serif;
   padding: 10px;
+  background: #eaeae8;
 }
 
 header {
@@ -13,20 +14,11 @@ header {
   gap: 10px;
   flex-wrap: wrap;
   margin: auto;
-
-  align-items: stretch;
-
-  justify-content: stretch;
-  /* justify-items: stretch; */
-
-  /* background: #ddd; */
 }
 
 .colour {
   width: 100px;
   height: 100px;
-  /* width: 100px;
-  height: 100px; */
 }
 
 .create-colour {
@@ -40,11 +32,32 @@ header {
 }
 
 /* Modal */
-
 .add-colour-modal {
   margin: auto;
-  /* background: ; */
-  /* display: none; */
+}
+
+.close-form {
+  display: flex;
+  justify-content: space-between;
+}
+
+.close-form button {
+  height: fit-content;
+}
+
+.modal-content {
+  padding: 12px;
+}
+
+.add-colour-modal-form-area label {
+  margin-right: 12px;
+}
+
+.add-colour-modal-form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0;
 }
 
 
