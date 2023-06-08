@@ -10,7 +10,7 @@
   "private": false,
   "scripts": {
     "start": "NO_D1_WARNING=true wrangler dev",
-    "deploy": "wrangler publish",
+    "deploy": "wrangler deploy",
     "test": "vitest"
   },
   "dependencies": {

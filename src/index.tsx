@@ -41,36 +41,59 @@ app.post("/colours", async (c) => {
     if (!hexCode) return c.html(<p>Error: missing colour hex code</p>, 400);
     if (!name) return c.html(<p>Error: missing colour name</p>, 400);
 
-    const { success, error, meta } = await c.env.DB.prepare(
-      `
-    insert into colours (hex_code, name) values (?, ?)
-  `
-    )
-      .bind(hexCode, name)
-      .run();
+    try {
+      const { success, error, meta } = await c.env.DB.prepare(
+        `
+      insert into colours (hex_code, name) values (?, ?)
+    `
+      )
+        .bind(hexCode, name)
+        .run();
 
-    const colours = await getColours(c.env.DB);
+      console.log("success", success, error, meta);
 
-    if (success) {
-      // c.status(201);
-      return c.redirect('/');
-      // return c.html(
-      //   <IndexPage
-      //     colours={colours}
-      //     messages={["Successfully added your colour"]}
-      //     errors={[]}
-      //   />
-      // );
-    } else {
+      const colours = await getColours(c.env.DB);
+
+      if (success) {
+        // c.status(201);
+        return c.redirect("/");
+        // return c.html(
+        //   <IndexPage
+        //     colours={colours}
+        //     messages={["Successfully added your colour"]}
+        //     errors={[]}
+        //   />
+        // );
+      } else {
+        c.status(500);
+        return c.html(
+          <IndexPage
+            colours={colours}
+            messages={[]}
+            errors={[`Oops, could not add your colour. ${error}`]}
+          />
+        );
+      }
+    } catch (e) {
+      console.log("recovering");
+
+      let errorMessage: string | null = null;
+
+      if (e?.cause.message.includes('UNIQUE constraint failed: colours.hex_code')) {
+        errorMessage = 'We already have this colour in the gallery. Please choose another.';
+      }
+
+
+      const colours = await getColours(c.env.DB);
       c.status(500);
       return c.html(
         <IndexPage
           colours={colours}
           messages={[]}
-          errors={[`Oops, could not add your colour. ${error}`]}
+          errors={[`Oops! ${errorMessage ?? e?.cause ?? e}`]}
         />
-      );    }
-  } else {
+      );
+    }
   }
 
   // Do something and return an HTTP response

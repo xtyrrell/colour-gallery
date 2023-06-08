@@ -16,9 +16,23 @@ header {
   margin: auto;
 }
 
+.colour-container {
+  width: 150px;
+}
+
 .colour {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
+}
+
+.colour-code {
+  display: none;
+  color: rgb(0, 255, 255); 
+  mix-blend-mode: difference;
+}
+
+.colour:hover .colour-code {
+  display: block;
 }
 
 .create-colour {
@@ -61,3 +75,54 @@ header {
 }
 
 
+
+/* .loading::after {
+  content: '';
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #3498db;
+  border-radius: 50%;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+} */
+
+
+button.loading {
+  background-color: #CCC;
+  padding-right: 40px;
+  position: relative;
+  transition: all 0.3s ease-out;
+
+}
+button.loading::after {
+  content: "";
+  position: absolute;
+  border-radius: 100%;
+  right: 6px;
+  top: 50%;
+  width: 0px;
+  height: 0px;
+  margin-top: -2px;
+  border: 2px solid white;
+  border-left-color: transparent;
+  border-top-color: transparent;
+  animation: spin 0.6s infinite linear, grow 0.3s forwards ease-out;
+}
+
+@keyframes spin { 
+  to {
+      transform: rotate(359deg);
+  }
+}
+
+@keyframes grow { 
+  to {
+      width: 14px;
+      height: 14px;
+      margin-top: -8px;
+      right: 13px;
+  }
+}

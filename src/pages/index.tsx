@@ -22,22 +22,21 @@ const AddColourModal = () => {
             ✕
           </button>
         </form>
-        <form action="/colours" method="post">
+        <form action="/colours" method="post" onsubmit="document.getElementById('colour-submit').setAttribute('disabled', true); document.getElementById('colour-submit').classList.add('loading')">
           <div class="add-colour-modal-form-area">
             <p>
               <label for="hexCode">Colour</label>
-              <input type="color" id="hexCode" name="hexCode" />
+              <input required type="color" id="hexCode" name="hexCode" />
             </p>
             <p>
               <label for="name">Name</label>
-              <input type="text" id="name" name="name" />
+              <input required type="text" id="name" name="name" />
             </p>
           </div>
-          <p>
-            <button type="submit" formmethod="post">
-              Save
-            </button>
-          </p>
+
+          <button type="submit" formmethod="post" id="colour-submit">
+            Save
+          </button>
         </form>
       </div>
     </dialog>
@@ -74,8 +73,10 @@ export const IndexPage = (props: {
 
         <main class="colour-grid">
           {props.colours.map((c) => (
-            <div>
-              <div class="colour" style={`background: ${c.hexCode};`}></div>
+            <div class="colour-container">
+              <div class="colour" style={`background: ${c.hexCode};`}>
+                <div class="colour-code">{c.hexCode}</div>
+              </div>
               <p>{c.name}</p>
             </div>
           ))}
@@ -89,7 +90,7 @@ export const IndexPage = (props: {
 
         <AddColourModal />
 
-        <script src="src/index.js"></script>
+        {/* <script src="static/index.js"></script> */}
       </body>
     </html>
   );
